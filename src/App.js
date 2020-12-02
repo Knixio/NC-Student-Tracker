@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Header from './components/Header'
+import SearchBox from './components/SearchBox'
+import {Link, Router} from '@reach/router'
+import Results from './components/Results'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const axios = require('axios');
+const API = 'https://nc-student-tracker.herokuapp.com/api/'
+
+class App extends React.Component {
+
+  state = {
+    students: [],
+    blocks: []
+  }
+
+  componentDidMount() {
+    this.fetchStudentData(API)
+    .then(students => {
+      this.setState({ students })
+    })
+    
+
+    // this.fetchBlockData(API)
+    // .then(blocks => {
+    //   this.setState({ ...students,  blocks})
+    // })
+  }
+
+ 
+  fetchStudentData = (API) => {
+    return axios.get(`${API}students`)
+      .then(response => {
+        return response.data.students
+      })
+  }
+
+  fetchBlockData = (API) => {
+    return axios.get(`${API}blocks`)
+      .then(response => {
+        return response.data.blocks
+      })
+  }
+  
+  render() {
+    const {students} = this.state
+    return (
+      <div className="App">
+        <Header />
+        <SearchBox />
+        <Results students={students}/>
+      </div>
+    );
+  }
+  
 }
 
 export default App;

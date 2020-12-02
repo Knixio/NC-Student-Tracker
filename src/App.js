@@ -55,7 +55,13 @@ class App extends React.Component {
       <div className="App">
         <Header />
         <SearchBox onChange={this.onChange} />
-        <Results students={students} />
+        <div></div>
+        <Router>
+          {/* student list
+          student info
+          student list (but graduated students) */}
+          <Results path='/' students={students} />
+        </Router>
       </div>
     );
   }

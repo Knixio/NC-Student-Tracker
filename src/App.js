@@ -1,25 +1,23 @@
-import React from 'react'
-import Header from './components/Header'
-import SearchBox from './components/SearchBox'
-import {Link, Router} from '@reach/router'
-import Results from './components/Results'
+import React from 'react';
+import Header from './components/Header';
+import SearchBox from './components/SearchBox';
+import { Link, Router } from '@reach/router';
+import Results from './components/Results';
 
 const axios = require('axios');
-const API = 'https://nc-student-tracker.herokuapp.com/api/'
+const API = 'https://nc-student-tracker.herokuapp.com/api/students?';
 
 class App extends React.Component {
-
   state = {
     students: [],
-    blocks: []
-  }
+    blocks: [],
+    searchTerm: '',
+  };
 
   componentDidMount() {
-    this.fetchStudentData(API)
-    .then(students => {
-      this.setState({ students })
-    })
-    
+    this.fetchStudentData(API).then((students) => {
+      this.setState({ students });
+    });
 
     // this.fetchBlockData(API)
     // .then(blocks => {
@@ -27,32 +25,40 @@ class App extends React.Component {
     // })
   }
 
- 
   fetchStudentData = (API) => {
-    return axios.get(`${API}students`)
-      .then(response => {
-        return response.data.students
-      })
-  }
+    const query = this.state.searchTerm;
+    console.log(query);
+    return axios.get(`${API}${query}`).then((response) => {
+      return response.data.students;
+    });
+  };
 
   fetchBlockData = (API) => {
-    return axios.get(`${API}blocks`)
-      .then(response => {
-        return response.data.blocks
-      })
-  }
-  
+    return axios.get(`${API}blocks`).then((response) => {
+      return response.data.blocks;
+    });
+  };
+
+  onChange = (event) => {
+    this.setState(() => {
+      const newState = {
+        searchTerm: `graduated=${event.target.value}`,
+      };
+      return newState;
+    });
+    this.fetchStudentData(API);
+  };
+
   render() {
-    const {students} = this.state
+    const { students } = this.state;
     return (
       <div className="App">
         <Header />
-        <SearchBox />
-        <Results students={students}/>
+        <SearchBox onChange={this.onChange} />
+        <Results students={students} />
       </div>
     );
   }
-  
 }
 
 export default App;

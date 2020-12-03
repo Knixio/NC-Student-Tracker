@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from '@reach/router'
 
 const SearchBox = (props) => {
-  const { onChange } = props;
+ 
   return (
     <div className="search-container ">
       {/* <form onSubmit={handleSubmit}>

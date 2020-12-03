@@ -37,29 +37,34 @@ code {
 }
 
 .search {
-  border: 2px solid black;
   border-radius: 50px;
   background-color: transparent;
   color: black;
   font-family: inherit;
   font-size: 1.2rem;
   padding: 0.5rem 1.5rem;
+  margin: 1em;
 }
 
 .search:focus {
   outline: 0;
 }
 
-.results-container {
+.results-box {
   width: 100%;
   height: 60vh;
   border: 2px solid black;
+  justify-content: center;
+  overflow: hidden auto;
+  margin-top: 3em;
+}
+
+.student-list {
   justify-content: center;
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 3em;
-  overflow: hidden auto;
   padding: 0;
 }
 

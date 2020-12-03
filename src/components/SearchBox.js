@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from '@reach/router'
 
 const SearchBox = (props) => {
   const { onChange } = props;
@@ -13,12 +14,21 @@ const SearchBox = (props) => {
           onChange={handleOnChange}
         ></input>
       </form> */}
-      <div onChange={onChange}>
+      <Link to='/students'>
+        <button className="search">All Students</button>
+      </Link>
+      <Link to='/students/graduates'>
+        <button className="search">Graduated Students</button>
+      </Link>
+      <Link to='/students/current'>
+        <button className="search">Current Students</button>
+      </Link>
+      
+      {/* <div onChange={onChange}>
         <p>graduated?</p>
         <input type="radio" value="true" name="graduation" /> True
         <input type="radio" value="false" name="graduation" /> False
-        {/* <input type="radio" value="Other" name="gender" /> Other */}
-      </div>
+      </div> */}
     </div>
   );
 };

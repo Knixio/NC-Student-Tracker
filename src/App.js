@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import SearchBox from './components/SearchBox';
 import { Link, Router } from '@reach/router';
-import Results from './components/Results';
+import StudentList from './components/StudentList';
 
 const axios = require('axios');
 const API = 'https://nc-student-tracker.herokuapp.com/api/students?';
@@ -26,9 +26,7 @@ class App extends React.Component {
   }
 
   fetchStudentData = (API) => {
-    const query = this.state.searchTerm;
-    console.log(query);
-    return axios.get(`${API}${query}`).then((response) => {
+    return axios.get(API).then((response) => {
       return response.data.students;
     });
   };
@@ -39,29 +37,32 @@ class App extends React.Component {
     });
   };
 
-  onChange = (event) => {
-    this.setState(() => {
-      const newState = {
-        searchTerm: `graduated=${event.target.value}`,
-      };
-      return newState;
-    });
-    this.fetchStudentData(API);
-  };
+  // onChange = (event) => {
+  //   this.setState(() => {
+  //     const newState = {
+  //       searchTerm: `graduated=${event.target.value}`,
+  //     };
+  //     return newState;
+  //   });
+  //   this.fetchStudentData(API);
+  // };
 
   render() {
     const { students } = this.state;
     return (
       <div className="App">
         <Header />
-        <SearchBox onChange={this.onChange} />
-        <div></div>
-        <Router>
-          {/* student list
-          student info
-          student list (but graduated students) */}
-          <Results path='/' students={students} />
-        </Router>
+        <SearchBox />
+        <div className='results-box'>
+          <Router>
+            
+            <StudentList path='/students' students={students} />
+            {/* path='/students/*'? */}
+            {/* student list
+            student info
+            student list (but graduated students) */}
+          </Router>
+        </div>
       </div>
     );
   }

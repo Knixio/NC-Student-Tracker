@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "@reach/router";
+import React from 'react';
+import { Link } from '@reach/router';
 
 const SearchBox = (props) => {
   return (
@@ -32,6 +32,21 @@ const SearchBox = (props) => {
         onClick={props.handleOnClick}
       />
       Graduated
+      <form>
+        <select
+          name="block"
+          id="block"
+          value=""
+          onChange={props.handleOnChange}
+        >
+          <option value="all-blocks">All Blocks</option>
+          <option value="proj">Project</option>
+          <option value="be">Backend</option>
+          <option value="grad">Graduated</option>
+          <option value="fe">Frontend</option>
+          <option value="fun">Fundamentals</option>
+        </select>
+      </form>
     </div>
   );
 };

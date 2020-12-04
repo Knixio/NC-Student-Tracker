@@ -4,8 +4,8 @@ import SearchBox from './components/SearchBox';
 import { Link, Router } from '@reach/router';
 import StudentList from './components/StudentList';
 import Home from './components/Home';
-import GradStudents from './components/GradStudents';
 import Student from './components/Student';
+import Block from './components/Block';
 
 class App extends React.Component {
   //function for onclick
@@ -13,23 +13,31 @@ class App extends React.Component {
   //Pass down to studentList
   state = {
     graduated: 'all',
+    block: '',
   };
+
   handleOnClick = (event) => {
     console.log(event.target.value);
     this.setState({ graduated: event.target.value });
   };
-
+  handleOnChange = (event) => {
+    console.log(event.target.value);
+    this.setState({ [event.target.id]: event.target.value });
+  };
   render() {
     return (
       <div className="App">
         <Header />
-        <SearchBox handleOnClick={this.handleOnClick} />
+        <SearchBox
+          handleOnClick={this.handleOnClick}
+          handleOnChange={this.handleOnChange}
+        />
         <div className="results-box">
           <Router>
             <Home path="/" />
             <StudentList path="/students" graduated={this.state.graduated} />
             <Student path="/students/:student_id" />
-            {/* <GradStudents path='/students/graduates/*'/> */}
+            <Block path="/students/:block" block={this.state.block} />
           </Router>
         </div>
       </div>

@@ -9,7 +9,6 @@ const API = 'https://nc-student-tracker.herokuapp.com/api/students';
 class StudentList extends React.Component {
   state = {
     students: [],
-    blocks: [],
   };
 
   componentDidMount() {
@@ -62,7 +61,6 @@ class StudentList extends React.Component {
   // };
 
   render() {
-    console.log(this.props);
     return (
       <section>
         <ul className="student-list">

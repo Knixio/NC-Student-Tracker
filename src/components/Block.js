@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import StudentCard from './StudentCard ';
-const axios = require('axios');
+import React, { Component } from "react";
+import StudentCard from "./StudentCard ";
+const axios = require("axios");
 
 class Block extends Component {
   state = {
@@ -12,6 +12,7 @@ class Block extends Component {
       this.setState({ students });
     });
   }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.props.block !== prevProps.block) {
       this.fetchBlockData().then((students) => {
@@ -19,57 +20,57 @@ class Block extends Component {
       });
     }
   }
-  fetchBlockData() {
-    return axios
-      .get(
-        `https://nc-student-tracker.herokuapp.com/api/students?block=${this.state.block}`
-      )
-      .then((res) => {
-        console.log(res);
-      });
-  }
 
   fetchBlockData = () => {
-    if (this.props.block === 'all-blocks') {
+    if (this.props.block === "all") {
       return axios
-        .get('https://nc-student-tracker.herokuapp.com/api/students')
+        .get("https://nc-student-tracker.herokuapp.com/api/students")
         .then((response) => {
           return response.data.students;
         });
-    } else if (this.props.block === 'proj') {
+    } else if (this.props.block === "proj") {
       return axios
-        .get('https://nc-student-tracker.herokuapp.com/api/students?block=proj')
+        .get("https://nc-student-tracker.herokuapp.com/api/students?block=proj")
         .then((response) => {
           return response.data.students;
         });
-    } else if (this.props.block === 'be') {
+    } else if (this.props.block === "be") {
       return axios
-        .get('https://nc-student-tracker.herokuapp.com/api/students?block=be')
+        .get("https://nc-student-tracker.herokuapp.com/api/students?block=be")
         .then((response) => {
           return response.data.students;
         });
-    } else if (this.props.block === 'grad') {
+    } else if (this.props.block === "grad") {
       return axios
-        .get('https://nc-student-tracker.herokuapp.com/api/students?block=grad')
+        .get("https://nc-student-tracker.herokuapp.com/api/students?block=grad")
         .then((response) => {
           return response.data.students;
         });
-    } else if (this.props.block === 'fe') {
+    } else if (this.props.block === "fe") {
       return axios
-        .get('https://nc-student-tracker.herokuapp.com/api/students?block=fe')
+        .get("https://nc-student-tracker.herokuapp.com/api/students?block=fe")
         .then((response) => {
           return response.data.students;
         });
-    } else if (this.props.block === 'fun') {
+    } else if (this.props.block === "fun") {
       return axios
-        .get('https://nc-student-tracker.herokuapp.com/api/students?block=fun')
+        .get("https://nc-student-tracker.herokuapp.com/api/students?block=fun")
         .then((response) => {
           return response.data.students;
         });
     }
   };
+
   render() {
-    return <div>Test</div>;
+    return (
+      <section>
+        <ul className="student-list">
+          {this.state.students.map((student) => {
+            return <StudentCard key={student._id} {...student} />;
+          })}
+        </ul>
+      </section>
+    );
   }
 }
 

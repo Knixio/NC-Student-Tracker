@@ -1,10 +1,10 @@
-import { Router } from '@reach/router';
-import React from 'react';
-import GradStudents from './GradStudents';
-import StudentCard from './StudentCard ';
+import { Router } from "@reach/router";
+import React from "react";
+import GradStudents from "./GradStudents";
+import StudentCard from "./StudentCard ";
 
-const axios = require('axios');
-const API = 'https://nc-student-tracker.herokuapp.com/api/students';
+const axios = require("axios");
+const API = "https://nc-student-tracker.herokuapp.com/api/students";
 
 class StudentList extends React.Component {
   state = {
@@ -26,24 +26,24 @@ class StudentList extends React.Component {
   }
 
   fetchStudentData = () => {
-    if (this.props.graduated === 'all') {
+    if (this.props.graduated === "all") {
       return axios
-        .get('https://nc-student-tracker.herokuapp.com/api/students')
+        .get("https://nc-student-tracker.herokuapp.com/api/students")
         .then((response) => {
           return response.data.students;
         });
-    } else if (this.props.graduated === 'true') {
+    } else if (this.props.graduated === "true") {
       return axios
         .get(
-          'https://nc-student-tracker.herokuapp.com/api/students?graduated=true'
+          "https://nc-student-tracker.herokuapp.com/api/students?graduated=true"
         )
         .then((response) => {
           return response.data.students;
         });
-    } else if (this.props.graduated === 'false') {
+    } else if (this.props.graduated === "false") {
       return axios
         .get(
-          'https://nc-student-tracker.herokuapp.com/api/students?graduated=false'
+          "https://nc-student-tracker.herokuapp.com/api/students?graduated=false"
         )
         .then((response) => {
           return response.data.students;

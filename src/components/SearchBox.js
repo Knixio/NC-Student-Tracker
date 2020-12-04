@@ -1,18 +1,9 @@
-import React from 'react';
-import { Link } from '@reach/router';
+import React from "react";
+import { Link } from "@reach/router";
 
 const SearchBox = (props) => {
   return (
     <div className="search-container ">
-      {/* <form onSubmit={handleSubmit}>
-        <input
-          className="search"
-          type="search"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={handleOnChange}
-        ></input>
-      </form> */}
       <Link to="/students">
         <button className="search" value="all" onClick={props.handleOnClick}>
           All Students
@@ -32,21 +23,23 @@ const SearchBox = (props) => {
         onClick={props.handleOnClick}
       />
       Graduated
-      <form>
-        <select
-          name="block"
-          id="block"
-          value=""
-          onChange={props.handleOnChange}
-        >
-          <option value="all-blocks">All Blocks</option>
-          <option value="proj">Project</option>
-          <option value="be">Backend</option>
-          <option value="grad">Graduated</option>
-          <option value="fe">Frontend</option>
-          <option value="fun">Fundamentals</option>
-        </select>
+      <form className="search">
+        <label>
+          Select a Block:
+          <br></br>
+          <select name="block" id="block" onChange={props.handleOnChange}>
+            <option value="all">All Blocks</option>
+            <option value="fun">Fundamentals</option>
+            <option value="be">Backend</option>
+            <option value="fe">Frontend</option>
+            <option value="proj">Project</option>
+            <option value="grad">Graduated</option>
+          </select>
+        </label>
       </form>
+      <Link to="/students/add_student">
+        <button className="addStudent">Add Student</button>
+      </Link>
     </div>
   );
 };

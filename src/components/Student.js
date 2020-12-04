@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const axios = require('axios');
+const axios = require("axios");
 
 class Student extends React.Component {
   state = {

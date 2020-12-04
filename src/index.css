@@ -9,7 +9,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -37,6 +37,16 @@ code {
 }
 
 .search {
+  border-radius: 50px;
+  background-color: transparent;
+  color: black;
+  font-family: inherit;
+  font-size: 1.2rem;
+  padding: 0.5rem 1.5rem;
+  margin: 1em;
+}
+
+.addStudent {
   border-radius: 50px;
   background-color: transparent;
   color: black;
@@ -89,8 +99,8 @@ code {
   padding: 0.25rem 1rem;
   text-transform: uppercase;
   border-radius: 1rem;
-  font-family: 'Courier';
-  -webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
+  font-family: "Courier";
+  -webkit-mask-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png");
   -webkit-mask-size: 944px 604px;
   mix-blend-mode: multiply;
   z-index: 1;
